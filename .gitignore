@@ -1,0 +1,93 @@
+##################################
+## .NET / C# (.NET 8 compatible)
+##################################
+
+## Build Folders
+bin/
+obj/
+[Bb]uild/
+[Ll]ogs/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## ASP.NET / Config
+appsettings.*.json
+!appsettings.json  # mantém o base
+
+## Entity Framework
+migrations/
+
+## Rider IDE
+.idea/
+*.sln.iml
+
+## Resharper
+_ReSharper*/
+*.DotSettings.user
+*.resharper
+
+## VS Code (caso alguém use)
+.vscode/
+
+## Docker
+.dockerignore
+Dockerfile*
+docker-compose*
+**/docker-compose*.yml
+**/Dockerfile
+
+## Secrets / Env
+.env
+.env.*  # .env.development, etc
+secrets.json
+
+## System-specific (Windows/macOS)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+## Logs / Dumps
+*.log
+*.dmp
+*.tmp
+
+## Test / Coverage
+TestResults/
+*.coverage
+*.coveragexml
+*.testsettings
+*.vsmdi
+*.trx
+
+## Global JSON SDK settings
+global.json
+
+## Publish output
+publish/
+
+## Package management
+*.nupkg
+*.snupkg
+.nuget/
+*.nuspec
+
+## Windows-specific folders
+*.db
+*.bak
+*.swp
+
+## Git merge conflict backups
+*.orig
+*.rej
+
+## Others
+*.tmp
+*.bak
+*.old
+*.cache
