@@ -90,6 +90,7 @@ public class AuthService : IAuthService
             throw new InternalServerErrorException("User Creation Failed!");
                
         };
+        await _userManager.AddToRoleAsync(user, "User");
     }
 
     public async Task<Object> CreateRefreshTokenAsync(TokenDTO token)
@@ -152,6 +153,7 @@ public class AuthService : IAuthService
         {
            throw new BadRequestException("Role Creation Failed.");
         }
+        
     }
 
     public async Task AddUserRoleAsync(UserRoleDTO userRole)
