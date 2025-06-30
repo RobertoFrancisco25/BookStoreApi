@@ -92,7 +92,29 @@ public class AuthService : IAuthService
         };
         await _userManager.AddToRoleAsync(user, "User");
     }
-
+    public async Task DeleteUserAsync(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user is null)
+        {
+            throw new NotFoundException("User not found");
+        }
+        var roles = await _userManager.GetRolesAsync(user);
+        if (roles.Any())
+        {
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
+            if (!result.Succeeded)
+            {
+                throw new InternalServerErrorException("An error occurred while removing the user's roles.");
+            }
+        }
+        var deleteUserResult = await _userManager.DeleteAsync(user);
+        if (!deleteUserResult.Succeeded)
+        {
+            throw new InternalServerErrorException("User Deletion Failed!");
+        }
+    }
+    
     public async Task<Object> CreateRefreshTokenAsync(TokenDTO token)
     {
         if (token is null)

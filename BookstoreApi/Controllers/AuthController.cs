@@ -45,6 +45,18 @@ public class AuthController : ControllerBase
         });
     }
     /// <summary>
+    /// Deletes a user identified by their email, removing the user and their roles from the system.
+    /// </summary>
+    /// <param name="email">The email of the user to be deleted.</param>
+    /// <returns>Returns HTTP 204 No Content if the user was deleted successfully.</returns>
+    [Authorize(Policy = "Admin")]
+    [HttpDelete("users/{email}")]
+    public async Task<IActionResult> DeleteUserAsync(string email)
+    {
+        await _authService.DeleteUserAsync(email);
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
+    /// <summary>
     /// Generates a new access token using the provided refresh token.
     /// </summary>
     /// <param name="tokenDTO">The token data transfer object containing the refresh token.</param>
@@ -100,4 +112,5 @@ public class AuthController : ControllerBase
         await _authService.AddUserRoleAsync(userRole);
         return Ok("Role added successfully.");
     }
+
 }

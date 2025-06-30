@@ -12,4 +12,5 @@ public interface IAuthService
     public Task RevokeAsync(EmailDTO emaiolDTO);
     public Task CreateRoleAsync(RoleNameDTO roleName);
     public Task AddUserRoleAsync(UserRoleDTO userRole);
+    public Task DeleteUserAsync(string email);
 }

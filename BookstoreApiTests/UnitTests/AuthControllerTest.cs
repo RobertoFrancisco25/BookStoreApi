@@ -101,6 +101,18 @@ namespace BookstoreApiTests.UnitTests
 
             Assert.Equal("Email already exists", message);
         }
+        [Fact]
+        public async Task DeleteUserAsync_ValidEmail_ReturnsNoContent()
+        {
+            var email = "example@example.com";
+            _mockAuthService.Setup(service => service.DeleteUserAsync(email))
+                .Returns(Task.CompletedTask);
+            var result = await _authController.DeleteUserAsync(email);
+            var statusCodeResult = Assert.IsType<StatusCodeResult>(result);
+            Assert.Equal(204, statusCodeResult.StatusCode);
+
+            _mockAuthService.Verify(service => service.DeleteUserAsync(email), Times.Once);
+        }
 
         [Fact]
         public async Task CreateRefreshTokenAsync_ShouldReturnCreated_WhenRefreshTokenIsGenerated()
